@@ -1,1 +1,1 @@
-/api/* http://noona-todo-list.ap-northeast-2.elasticbeanstalk.com/api/:splat 200
+/api/* https://node-todo-demo-8ff89812cb25.herokuapp.com/api/:splat 200
