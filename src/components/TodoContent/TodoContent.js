@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import api from '../../utils/api'
+import { FaTrashCan, FaRegHourglassHalf  } from "react-icons/fa6";
 
 const mock = [
     {
@@ -31,7 +32,7 @@ const TodoContent = () => {
             }
             setTodoValue("");
             } catch (error) {
-            console.log("error:", error);
+                console.log("error:", error);
             }
         };
     
@@ -74,18 +75,25 @@ const TodoContent = () => {
                     onChange={(event) => setTodoValue(event.target.value)} 
                     value={todoValue}
                 />
-                <button>추가</button>
+                <button onClick={()=> addTodo()}>추가</button>
             </div>
-            <ul>
+            <ul className="todo-list">
                 {
                     todoList.map(({_id, task, isComplete, createdAt})=> 
-                        <li key={_id}>
-                            <div></div>
+                        <li 
+                            key={_id} 
+                            onClick={()=> toggleComplete(_id)}
+                        >
+                            <div>
+                                <FaRegHourglassHalf/>
+                            </div>
                             <div>
                                 <p>{task}</p>
                                 <span>{createdAt}</span>
                             </div>
-                            <div></div>
+                            <button onClick={()=> deleteItem(_id)}>
+                                <FaTrashCan/>
+                            </button>
                         </li>
                     )
                 }
