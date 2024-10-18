@@ -1,7 +1,7 @@
 .container{
     background-color: var(--main-color);
-    min-height: 100dvh;
     width: clamp(100px , 100%, 600px);
+    min-height: 100dvh;
     margin: 0 auto;
     padding: 1em;
     header {
@@ -79,4 +79,11 @@
 .center {
     display: grid;
     place-content: center;
+}
+
+.todo-content-fallback{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
