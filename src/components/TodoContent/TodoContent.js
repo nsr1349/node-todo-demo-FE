@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import api from '../../utils/api'
 import { FaTrashCan } from "react-icons/fa6";
 import { MdOutlineCheckBoxOutlineBlank, MdOutlineCheckBox  } from "react-icons/md";
+import dayjs from 'dayjs'
 
 const TodoContent = () => {
     const [todoList, setTodoList] = useState([])
@@ -82,7 +83,7 @@ const TodoContent = () => {
                                 </button>
                                 <div className="todo-item-content">
                                     <p>{task}</p>
-                                    <span>{createdAt}</span>
+                                    <span>{dayjs(createdAt).format('YYYY년 MM월 DD일')}</span>
                                 </div>
                                 <button onClick={()=> deleteItem(_id)}>
                                     <FaTrashCan/>
