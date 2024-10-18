@@ -44,6 +44,7 @@
         border-radius: 5px;
         display: flex;
         height: 70px;
+        animation: growup .3s ;
         .todo-item-iconbox{
             aspect-ratio: 1/1;
             height: 100%;
@@ -86,4 +87,13 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+@keyframes growup {
+    from {
+        scale: .9;
+    }
+    to {
+        scale: 1;
+    }
 }
