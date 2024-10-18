@@ -1,11 +1,25 @@
 import { useEffect, useState } from "react";
 import api from '../../utils/api'
-import { FaTrashCan, FaRegHourglassHalf  } from "react-icons/fa6";
-
+import { FaTrashCan } from "react-icons/fa6";
+import { MdOutlineCheckBoxOutlineBlank, MdOutlineCheckBox  } from "react-icons/md";
 const mock = [
     {
         "_id": "67124cd4a7046e7a8cb533bf",
-        "task": "똥싸기",
+        "task": "똥싸기nasodnasodnasodasodmaosdnoasdnoasndoasndoandoasndoasndoando",
+        "isComplete": false,
+        "createdAt": "2024-10-18T11:56:04.157Z",
+        "updatedAt": "2024-10-18T11:56:04.157Z"
+    },
+    {
+        "_id": "67124cd4a7046e7a8cb533b",
+        "task": "똥싸기2",
+        "isComplete": true,
+        "createdAt": "2024-10-18T11:56:04.157Z",
+        "updatedAt": "2024-10-18T11:56:04.157Z"
+    },
+    {
+        "_id": "67124cd4a7046e7acb533bf",
+        "task": "똥싸기3",
         "isComplete": false,
         "createdAt": "2024-10-18T11:56:04.157Z",
         "updatedAt": "2024-10-18T11:56:04.157Z"
@@ -83,11 +97,16 @@ const TodoContent = () => {
                         <li 
                             key={_id} 
                             onClick={()=> toggleComplete(_id)}
+                            className={isComplete && 'complete'}
                         >
-                            <div>
-                                <FaRegHourglassHalf/>
-                            </div>
-                            <div>
+                            <button className="todo-item-iconbox center ">
+                                {
+                                    isComplete ? 
+                                        <MdOutlineCheckBox/> : 
+                                        <MdOutlineCheckBoxOutlineBlank/>
+                                }
+                            </button>
+                            <div className="todo-item-content">
                                 <p>{task}</p>
                                 <span>{createdAt}</span>
                             </div>
