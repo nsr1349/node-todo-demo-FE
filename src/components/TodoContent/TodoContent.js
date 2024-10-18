@@ -2,32 +2,9 @@ import { useEffect, useState } from "react";
 import api from '../../utils/api'
 import { FaTrashCan } from "react-icons/fa6";
 import { MdOutlineCheckBoxOutlineBlank, MdOutlineCheckBox  } from "react-icons/md";
-const mock = [
-    {
-        "_id": "67124cd4a7046e7a8cb533bf",
-        "task": "똥싸기nasodnasodnasodasodmaosdnoasdnoasndoasndoandoasndoasndoando",
-        "isComplete": false,
-        "createdAt": "2024-10-18T11:56:04.157Z",
-        "updatedAt": "2024-10-18T11:56:04.157Z"
-    },
-    {
-        "_id": "67124cd4a7046e7a8cb533b",
-        "task": "똥싸기2",
-        "isComplete": true,
-        "createdAt": "2024-10-18T11:56:04.157Z",
-        "updatedAt": "2024-10-18T11:56:04.157Z"
-    },
-    {
-        "_id": "67124cd4a7046e7acb533bf",
-        "task": "똥싸기3",
-        "isComplete": false,
-        "createdAt": "2024-10-18T11:56:04.157Z",
-        "updatedAt": "2024-10-18T11:56:04.157Z"
-    }
-]
 
 const TodoContent = () => {
-    const [todoList, setTodoList] = useState(mock)
+    const [todoList, setTodoList] = useState([])
     const [todoValue, setTodoValue] = useState("")
 
     const getTasks = async () => {
@@ -93,28 +70,25 @@ const TodoContent = () => {
             </div>
             <ul className="todo-list">
                 {
-                    todoList.map(({_id, task, isComplete, createdAt})=> 
-                        <li 
-                            key={_id} 
-                            onClick={()=> toggleComplete(_id)}
-                            className={isComplete && 'complete'}
-                        >
-                            <button className="todo-item-iconbox center ">
-                                {
-                                    isComplete ? 
-                                        <MdOutlineCheckBox/> : 
-                                        <MdOutlineCheckBoxOutlineBlank/>
-                                }
-                            </button>
-                            <div className="todo-item-content">
-                                <p>{task}</p>
-                                <span>{createdAt}</span>
-                            </div>
-                            <button onClick={()=> deleteItem(_id)}>
-                                <FaTrashCan/>
-                            </button>
-                        </li>
-                    )
+                    todoList.length !== 0 ? 
+                        todoList.map(({_id, task, isComplete, createdAt})=> 
+                            <li key={_id} className={isComplete && 'complete'}>
+                                <button className="todo-item-iconbox center" onClick={()=> toggleComplete(_id)}>
+                                    {
+                                        isComplete ? 
+                                            <MdOutlineCheckBox/> : 
+                                            <MdOutlineCheckBoxOutlineBlank/>
+                                    }
+                                </button>
+                                <div className="todo-item-content">
+                                    <p>{task}</p>
+                                    <span>{createdAt}</span>
+                                </div>
+                                <button onClick={()=> deleteItem(_id)}>
+                                    <FaTrashCan/>
+                                </button>
+                            </li> ) : 
+                        <p className="center">놀지마</p>
                 }
             </ul>
         </>
