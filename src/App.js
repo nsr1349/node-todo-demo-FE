@@ -1,16 +1,22 @@
 import "./App.css";
-import { lazy, Suspense } from "react";
-const TodoContent = lazy(() => import('./components/TodoContent/TodoContent'));
+import MainPage from "./pages/MainPage/MainPage";
+import LoginPage from "./pages/LoginPage/LoginPage";
+import SiginUpPage from "./pages/SiginUpPage/SignUpPage";
+import NotFound from "./components/NotFound";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
 
 function App() {
   return (
     <div className="container">
-      <header>Todo app</header>
-      <main>
-          <Suspense fallback={<div className="todo-content-fallback">할 거 기억하는 중..</div>}>
-            <TodoContent/>
-          </Suspense>
-      </main>
+        <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<MainPage />}></Route>
+              <Route path="/Login" element={<LoginPage />}></Route>
+              <Route path="/Login" element={<SiginUpPage />}></Route>
+              <Route path="*" element={<NotFound />}></Route>
+            </Routes>
+        </BrowserRouter>
     </div>
   );
 }
