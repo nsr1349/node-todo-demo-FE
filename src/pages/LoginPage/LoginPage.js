@@ -2,6 +2,7 @@ import { LoginApi } from '../../utils/user';
 import { useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import './LoginPage.css'
+import api from '../../utils/api';
 
 function LoginPage() {
     const [email, setEmail] = useState("")
@@ -11,8 +12,10 @@ function LoginPage() {
     
     const Login = async (e) => {
         e.preventDefault();
-        const { status, err } = await LoginApi(email,password)
+        const { status, err, data } = await LoginApi(email,password)
         if (status === 200){
+            sessionStorage.setItem("token", data.token )
+            api.defaults.headers["authorization"] = "Bearer " + data.token
             navigate('/')
         } else {
             setErr(`* ${err}`)
