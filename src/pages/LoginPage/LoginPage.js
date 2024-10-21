@@ -1,19 +1,26 @@
 import { LoginApi } from '../../utils/user';
 import { useState } from "react";
+import { Link, useNavigate } from 'react-router-dom';
 import './LoginPage.css'
 
 function LoginPage() {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-
+    const [err, setErr] = useState(null)
+    const navigate = useNavigate()
+    
     const Login = async (e) => {
         e.preventDefault();
-        const res = LoginApi(email,password)
-        console.log(res)
+        const { status, err } = await LoginApi(email,password)
+        if (status === 200){
+            navigate('/')
+        } else {
+            setErr(`* ${err}`)
+        } 
     }
 
     return (
-        <>
+        <main>
             <h1>로그인</h1>
             <form className="primary-form" onSubmit={Login}>
                 <label>이메일</label>
@@ -26,9 +33,11 @@ function LoginPage() {
                     onChange={({target}) => setPassword(target.value)} 
                     value={password}
                 />
-                <button className='btn'>로그인</button>
+                { err && <div className="err-box" style={{margin : '1.5em 0 0 0'}}>{err}</div>}
+                <button className='btn w-full'>로그인</button>
             </form>
-        </>
+            <Link to={'/signUp'}><button>회원가입하기</button></Link>
+        </main>
     );
 }
 
