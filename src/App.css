@@ -97,6 +97,18 @@
     }
 }
 
+.primary-form {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0;
+    label {
+        margin: 15px 0;
+    }
+    .btn {
+        margin-top: 20px;
+    }
+}
+
 @keyframes growup {
     from {
         scale: .9;

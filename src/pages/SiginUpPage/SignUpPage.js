@@ -21,7 +21,7 @@ function SiginUpPage() {
     return (
         <>
             <h1>회원가입</h1>
-            <form className="signup-form" onSubmit={signUp}>
+            <form className="primary-form" onSubmit={signUp}>
                 <label>닉네임</label>
                 <input name='name' 
                     onChange={({target}) => setName(target.value)} 
@@ -42,9 +42,8 @@ function SiginUpPage() {
                     onChange={({target}) => setPassword2(target.value)} 
                     value={password2}
                 />
-                <button className='btn signup-btn'>회원가입</button>
+                <button className='btn'>회원가입</button>
             </form>
-            <button className='btn signup-btn' onClick={()=> console.log(name, email, password, password2)}>ee</button>
         </>
     );
 }
