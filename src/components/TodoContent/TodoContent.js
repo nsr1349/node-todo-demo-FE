@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import api from '../../utils/api'
 import { FaTrashCan } from "react-icons/fa6";
 import { MdOutlineCheckBoxOutlineBlank, MdOutlineCheckBox  } from "react-icons/md";
+import { createTaskApi, deleteItemApi, getTasksApi, updateTodoApi } from "../../utils/tasks";
 import dayjs from 'dayjs'
 
 const TodoContent = () => {
@@ -9,49 +9,24 @@ const TodoContent = () => {
     const [todoValue, setTodoValue] = useState("")
 
     const getTasks = async () => {
-        const response = await api.get("/tasks");
-        setTodoList(response.data.data);
+        const { data } = await getTasksApi()
+        setTodoList(data.data);
     };
     
     const addTodo = async () => {
-        try {
-            const response = await api.post("/tasks", {
-                task: todoValue,
-                isComplete: false,
-            });
-            if (response.status === 200) {
-                getTasks();
-            }
-            setTodoValue("");
-            } catch (error) {
-                console.log("error:", error);
-            }
-        };
-    
-    const deleteItem = async (id) => {
-        try {
-            console.log(id);
-            const response = await api.delete(`/tasks/${id}`);
-            if (response.status === 200) {
-                getTasks();
-            }
-        } catch (error) {
-            console.log("error", error);
-        }
+        const res = await createTaskApi(todoValue)
+        getTasks();
+        setTodoValue("");
     };
     
-    const toggleComplete = async (id) => {
-        try {
-            const task = todoList.find((item) => item._id === id);
-            const response = await api.put(`/tasks/${id}`, {
-                isComplete: !task.isComplete,
-            });
-            if (response.status === 200) {
-                getTasks();
-            }
-        } catch (error) {
-            console.log("error", error);
-        }
+    const deleteItem = async (id) => {
+        const res = await deleteItemApi(id)
+        getTasks();
+    };
+    
+    const toggleComplete = async (id, isComplete) => {
+        const res = await updateTodoApi(id, !isComplete)
+        getTasks();
     };
     
     useEffect(() => {
@@ -73,8 +48,8 @@ const TodoContent = () => {
                 {
                     todoList.length !== 0 ? 
                         todoList.map(({_id, task, isComplete, createdAt})=> 
-                            <li key={_id} className={isComplete && 'complete'}>
-                                <button className="todo-item-iconbox center" onClick={()=> toggleComplete(_id)}>
+                            <li key={_id} className={isComplete ? 'complete' : ''}>
+                                <button className="todo-item-iconbox center" onClick={()=> toggleComplete(_id, isComplete)}>
                                     {
                                         isComplete ? 
                                             <MdOutlineCheckBox/> : 
