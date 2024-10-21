@@ -87,6 +87,16 @@ input, button {
   background-color:transparent;
 }
 
+input {
+  color: var(--white-color);
+  border: 1px solid var(--sub-color);
+  border-radius: 4px;
+  padding: .4em 1em;
+  &:focus {
+    border: 1px solid var(--gray-color);
+  }
+}
+
 button{
   color: var(--gray-color);
   transition: all .3s;
