@@ -3,15 +3,34 @@
     width: clamp(100px , 100%, 600px);
     min-height: 100dvh;
     margin: 0 auto;
-    padding: 1em;
     header {
-        font-size: 2.2rem;
-        font-weight: bold;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        h1 {
+            font-size: 2.5em;
+        }
+        button {
+            padding: .3em 1em;
+        }
+    }
+}
+
+main {
+    padding: 1em;
+}
+
+.is-login-box{
+    background-color: var(--sub-color);
+    padding: .5em 1em;
+    text-align: center;
+    &.login-true {
+        background-color: rgb(2, 196, 2);
     }
 }
 
 .todo-form{
-    margin: 1em 0;
+    margin: 1.5em 0;
     display: flex;
     gap: 1em;
     input{
@@ -73,6 +92,10 @@
     }
 }
 
+.w-full {
+    width: 100%;
+}
+
 .center {
     display: grid;
     place-content: center;
@@ -90,11 +113,14 @@
     border-radius: 5px;
     color: var(--white-color);
     padding: .5em 3em;
-    width: 100%;
     &:hover {
         border: 1px solid var(--white-color);
         background-color: var(--sub-color);;
     }
+}
+
+.err-box{
+    color: rgb(165, 1, 1);
 }
 
 .primary-form {
