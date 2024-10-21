@@ -3,8 +3,13 @@ import { Link } from "react-router-dom";
 const TodoContent = lazy(() => import("../../components/TodoContent/TodoContent"));
 
 function MainPage() {
+    console.log(sessionStorage.getItem("token"))
     return (
         <>
+            {
+                sessionStorage.getItem("token") && 
+                    <div className="is-login-box">로그인 된 상태입니다</div>
+            }
             <main>
                 <header>
                     <h1>Todo app</h1>
