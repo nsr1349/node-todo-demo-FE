@@ -1,11 +1,19 @@
 import api from "./api";
 
 const LoginApi = async (email, password) => {
-    return await api.post("/user/login", { email, password })
+    try {
+        return await api.post("/user/login", { email, password })
+    } catch (error) {
+        return error
+    }
 }
 
 const createUserApi = async ( name,email,password ) => {
-    return await api.post("/user", { name, email, password })
+    try {
+        return await api.post("/user", { name, email, password })
+    } catch (error) {
+        return error
+    }
 }
 
 export { LoginApi, createUserApi };
