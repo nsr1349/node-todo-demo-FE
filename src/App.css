@@ -24,9 +24,8 @@ main {
     background-color: var(--sub-color);
     padding: .5em 1em;
     text-align: center;
-    &.login-true {
-        background-color: rgb(2, 196, 2);
-    }
+    background-color: #5cb85c;
+    font-weight: bold;
 }
 
 .todo-form{
