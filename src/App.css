@@ -107,6 +107,10 @@ main {
     transform: translate(-50%, -50%);
 }
 
+.font-gray{
+    color: var(--gray-color);
+}
+
 .btn{
     border: 1px solid var(--gray-color);
     border-radius: 5px;
