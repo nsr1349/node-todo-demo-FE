@@ -57,7 +57,7 @@ main {
         background-color: var(--sub-color);
         border-radius: 5px;
         display: flex;
-        height: 70px;
+        height: 76px;
         animation: growup .3s ;
         .todo-item-iconbox{
             aspect-ratio: 1/1;
@@ -73,9 +73,9 @@ main {
             p {
                 text-overflow: ellipsis;
                 white-space:nowrap;
+                font-weight: bold;
             }
             span {
-                color: var(--gray-color);
                 font-size: .8em;
             }
         }
@@ -105,6 +105,10 @@ main {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.font-white{
+    color: var(--white-color);
 }
 
 .font-gray{

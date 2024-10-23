@@ -47,7 +47,7 @@ const TodoContent = () => {
             <ul className="todo-list">
                 {
                     todoList.length !== 0 ? 
-                        todoList.map(({_id, task, isComplete, createdAt})=> 
+                        todoList.map(({_id, task, isComplete, createdAt, author})=> 
                             <li key={_id} className={isComplete ? 'complete' : ''}>
                                 <button className="todo-item-iconbox center" onClick={()=> toggleComplete(_id, isComplete)}>
                                     {
@@ -58,7 +58,10 @@ const TodoContent = () => {
                                 </button>
                                 <div className="todo-item-content">
                                     <p>{task}</p>
-                                    <span>{dayjs(createdAt).format('YYYY년 MM월 DD일')}</span>
+                                    <div>
+                                        <span className="font-white">{author.name} </span>
+                                        <span className="font-gray">{dayjs(createdAt).format('YYYY년 MM월 DD일')}</span>
+                                    </div>
                                 </div>
                                 <button onClick={()=> deleteItem(_id)}>
                                     <FaTrashCan/>
