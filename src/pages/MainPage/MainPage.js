@@ -1,9 +1,16 @@
 import { lazy, Suspense } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+
 const TodoContent = lazy(() => import("../../components/TodoContent/TodoContent"));
 
-function MainPage() {
-    console.log(sessionStorage.getItem("token"))
+function MainPage({setUser}) {
+    const navigate = useNavigate()
+    const logout = () => {
+        setUser(null)
+        sessionStorage.removeItem('token')
+        navigate('/login')
+    }
+
     return (
         <>
             {
@@ -13,9 +20,7 @@ function MainPage() {
             <main>
                 <header>
                     <h1>Todo app</h1>
-                    <Link to={'/login'}>
-                        <button className="btn">로그인</button>
-                    </Link>
+                    <button className="btn" onClick={()=> logout()}>로그아웃</button>
                 </header>
                 <Suspense fallback={<div className="todo-content-fallback">할 거 기억하는 중..</div>}>
                     <TodoContent/>
