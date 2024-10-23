@@ -1,6 +1,6 @@
 import api from "./api";
 
-const getTasksApi = async (id) => {
+const getTasksApi = async (id = '') => {
     return await api.get(`/tasks/${id}`);
 }
 
