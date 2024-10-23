@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import './LoginPage.css'
 import api from '../../utils/api';
 
-function LoginPage() {
+function LoginPage({user , setUser}) {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [err, setErr] = useState(null)
@@ -14,6 +14,7 @@ function LoginPage() {
         e.preventDefault();
         const { status, err, data } = await LoginApi(email,password)
         if (status === 200){
+            setUser(data.user)
             sessionStorage.setItem("token", data.token )
             api.defaults.headers["authorization"] = "Bearer " + data.token
             navigate('/')
