@@ -20,12 +20,14 @@ const TodoContent = () => {
     };
     
     const deleteItem = async (id) => {
-        const res = await deleteItemApi(id)
+        const { status, err } = await deleteItemApi(id)
+        if (status === 'fail') alert(err)
         getTasks();
     };
     
     const toggleComplete = async (id, isComplete) => {
-        const res = await updateTodoApi(id, !isComplete)
+        const { status, err } = await updateTodoApi(id, !isComplete)
+        if (status === 'fail') alert(err)
         getTasks();
     };
     
@@ -58,10 +60,7 @@ const TodoContent = () => {
                                 </button>
                                 <div className="todo-item-content">
                                     <p>{task}</p>
-                                    <div>
-                                        <span className="font-white">{author.name} </span>
-                                        <span className="font-gray">{dayjs(createdAt).format('YYYY년 MM월 DD일')}</span>
-                                    </div>
+                                    <span className="font-gray">{author.name + ' | ' + dayjs(createdAt).format('MM월 DD일')}</span>
                                 </div>
                                 <button onClick={()=> deleteItem(_id)}>
                                     <FaTrashCan/>

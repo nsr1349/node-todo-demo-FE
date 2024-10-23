@@ -9,11 +9,19 @@ const createTaskApi = async (task) => {
 }
 
 const updateTodoApi = async (id, isComplete) => {
-    return await api.put(`/tasks/${id}`, { isComplete: isComplete })
+    try {
+        return await api.put(`/tasks/${id}`, { isComplete: isComplete })
+    } catch (error) {
+        return error
+    }
 }
 
 const deleteItemApi = async (id) => {
-    return await api.delete(`/tasks/${id}`)
+    try {
+        return await api.delete(`/tasks/${id}`)
+    } catch (error) {
+        return error
+    }
 };
 
 export { getTasksApi, createTaskApi , updateTodoApi, deleteItemApi};
