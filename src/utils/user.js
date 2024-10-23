@@ -16,4 +16,12 @@ const createUserApi = async ( name,email,password ) => {
     }
 }
 
-export { LoginApi, createUserApi };
+const getUserApi = async () => {
+    try {
+        return await api.get('/user')
+    } catch (error) {
+        return error
+    }
+}
+
+export { LoginApi, createUserApi, getUserApi };
